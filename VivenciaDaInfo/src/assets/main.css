@@ -1,0 +1,37 @@
+@import "./base.css";
+
+.calc{
+  border: 3px solid #8a88ff;
+  width: 35%;
+  padding: 30px;
+}
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+.valores-forms {
+  display: grid;
+  margin-top: 17px;
+}
+input{
+  height: 30px;
+  padding-left: 10px;
+}
+strong {
+  text-decoration: underline solid #8a88ff;
+}
+label{
+  font-size: 16px;
+}
+.resultado {
+  background-color: #8a88ff;
+  display: flex;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.resultado span {
+  font-size: 2em;
+}
