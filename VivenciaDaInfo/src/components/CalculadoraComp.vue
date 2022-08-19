@@ -16,10 +16,12 @@ export default {
       qualidade_selecionada: "",
     };
   },
-  methods: {
+  computed: {
     gerar() {
-      this.valor_final =
-        (this.valor * (1 + this.qualidades / 100)) / this.pessoa;
+      return (
+        (this.valor * (1 + this.qualidade_selecionada / 100)) /
+        this.pessoa
+      ).toFixed(2);
     },
   },
 };
@@ -30,7 +32,7 @@ export default {
       <h1>Calculadora de <strong>Gorjetas</strong></h1>
       <div class="valores-forms">
         <label for="input-valor">Qual o valor da conta?</label>
-        <input v-model="valor" id="input-valor" type="number" />
+        <input v-model="valor" placeholder="0" id="input-valor" type="number" />
       </div>
       <div class="valores-forms">
         <label for="select-servico">Como foi o serviço?</label>
@@ -43,6 +45,7 @@ export default {
             v-for="qualidade of qualidades"
             :key="qualidade.qualidade"
             for="select-servico"
+            :value="qualidade.qualidade"
           >
             {{ qualidade.servico }}
           </option>
@@ -52,15 +55,17 @@ export default {
         <label for="input-pessoas"
           >Quantas pessoas estão pagando a conta?</label
         >
-        <input v-model="pessoa" id="input-pessoas" type="number" />
-      </div>
-      <div class="btn-div">
-        <button class="button-3" @click="gerar()" role="button">gerar</button>
+        <input
+          v-model="pessoa"
+          placeholder="1"
+          id="input-pessoas"
+          type="number"
+        />
       </div>
     </div>
     <div class="resultado">
       <h2>Valor da conta:</h2>
-      <span>R$ {{ valor_final }} por pessoa</span>
+      <span>R$ {{ gerar }} por pessoa</span>
     </div>
   </main>
 </template>
