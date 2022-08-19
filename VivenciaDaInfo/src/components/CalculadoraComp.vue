@@ -27,44 +27,52 @@ export default {
 </script>
 <template>
   <main>
-    <div class="calc">
-      <h1>Calculadora de <strong>Gorjetas</strong></h1>
-      <div class="valores-forms">
-        <label for="input-valor">Qual o valor da conta?</label>
-        <input v-model="valor" placeholder="0" id="input-valor" type="number" />
-      </div>
-      <div class="valores-forms">
-        <label for="select-servico">Como foi o serviço?</label>
-        <select
-          v-model="qualidade_selecionada"
-          name="select-qualidade"
-          id="select-servico"
-        >
-          <option
-            v-for="qualidade of qualidades"
-            :key="qualidade.qualidade"
-            for="select-servico"
-            :value="qualidade.qualidade"
+    <div class="container">
+      <div class="calc">
+        <h1>Calculadora de <strong>Gorjetas</strong></h1>
+        <div class="valores-forms">
+          <label for="input-valor">Qual o valor da conta?</label>
+          <input
+            v-model="valor"
+            placeholder="0"
+            id="input-valor"
+            type="number"
+          />
+        </div>
+        <div class="valores-forms">
+          <label for="select-servico">Como foi o serviço?</label>
+          <select
+            v-model="qualidade_selecionada"
+            name="select-qualidade"
+            id="select-servico"
           >
-            {{ qualidade.servico }}
-          </option>
-        </select>
+            <option disabled value="">Escolha um item</option>
+            <option
+              v-for="qualidade of qualidades"
+              :key="qualidade.qualidade"
+              for="select-servico"
+              v-bind:value="qualidade.qualidade"
+            >
+              {{ qualidade.servico }}
+            </option>
+          </select>
+        </div>
+        <div class="valores-forms">
+          <label for="input-pessoas"
+            >Quantas pessoas estão pagando a conta?</label
+          >
+          <input
+            v-model="pessoa"
+            placeholder="1"
+            id="input-pessoas"
+            type="number"
+          />
+        </div>
       </div>
-      <div class="valores-forms">
-        <label for="input-pessoas"
-          >Quantas pessoas estão pagando a conta?</label
-        >
-        <input
-          v-model="pessoa"
-          placeholder="1"
-          id="input-pessoas"
-          type="number"
-        />
+      <div class="resultado">
+        <h2>Valor da conta:</h2>
+        <span>R$ {{ valor_final }} por pessoa</span>
       </div>
-    </div>
-    <div class="resultado">
-      <h2>Valor da conta:</h2>
-      <span>R$ {{ valor_final }} por pessoa</span>
     </div>
   </main>
 </template>

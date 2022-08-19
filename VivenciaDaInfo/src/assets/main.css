@@ -2,13 +2,21 @@
 
 .calc{
   border: 3px solid #8a88ff;
-  width: 35%;
   padding: 30px;
 }
+.container {
+  max-width: 830px;
+  margin: auto;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
 main {
   display: flex;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 80px;
 }
 .valores-forms {
   display: grid;
