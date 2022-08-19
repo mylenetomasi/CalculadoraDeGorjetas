@@ -12,12 +12,11 @@ export default {
       ],
       valor: 0,
       pessoa: 1,
-      valor_final: 0,
       qualidade_selecionada: "",
     };
   },
   computed: {
-    gerar() {
+    valor_final() {
       return (
         (this.valor * (1 + this.qualidade_selecionada / 100)) /
         this.pessoa
@@ -65,7 +64,7 @@ export default {
     </div>
     <div class="resultado">
       <h2>Valor da conta:</h2>
-      <span>R$ {{ gerar }} por pessoa</span>
+      <span>R$ {{ valor_final }} por pessoa</span>
     </div>
   </main>
 </template>
