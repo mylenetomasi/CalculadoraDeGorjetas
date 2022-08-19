@@ -1,41 +1,66 @@
 <script>
 export default {
-    data () {
-        return {
-            qualidades: [
-                {porcentagem: "5%", servico: "serviço péssimo"},
-                {porcentagem: "10%", servico: "serviço ruim"},
-                {porcentagem: "15%", servico: "serviço OK"},
-                {porcentagem: "20%", servico: "serviço bom"},
-                {porcentagem: "25%", servico: "serviço mais que bom"},
-                {porcentagem: "30%", servico: "serviço excepcional"},
-            ]
-        }
-    }
+  data() {
+    return {
+      qualidades: [
+        { qualidade: 5, servico: "5% (Péssimo)" },
+        { qualidade: 10, servico: "10% (Ruim)" },
+        { qualidade: 15, servico: "15% (OK)" },
+        { qualidade: 20, servico: "20% (Bom)" },
+        { qualidade: 25, servico: "25% (Mais que bom)" },
+        { qualidade: 30, servico: "30% (Excepcional)" },
+      ],
+      valor: 0,
+      pessoa: 1,
+      valor_final: 0,
+      qualidade_selecionada: "",
+    };
+  },
+  methods: {
+    gerar() {
+      this.valor_final =
+        (this.valor * (1 + this.qualidades / 100)) / this.pessoa;
+    },
+  },
 };
 </script>
 <template>
-    <main>
-        <div class="calc">
-            <h1>Calculadora de <strong>Gorjetas</strong></h1>
-            <div class="valores-forms">
-                <label for="input-valor">Qual o valor da conta?</label>
-                <input id="input-valor" type="number">
-            </div>
-            <div class="valores-forms">
-                <label for="select-servico">Como foi o serviço?</label>
-                <select name="select-qualidade" id="select-servico">
-                    <option v-for="porcentagem of qualidades" :key="porcentagem.porcentagem" for="select-servico" value="porcentagem.porcentagem">{{ qualidades.servico }}</option>
-                </select>
-            </div>
-            <div class="valores-forms">
-                <label for="input-pessoas">Quantas pessoas estão pagando a conta?</label>
-                <input id="input-pessoas" type="number">
-            </div>        
-        </div>
-        <div class="resultado">
-            <h2>Valor da conta:</h2>
-            <span>R$ 0.00 por pessoa</span>
-        </div>
-    </main>
+  <main>
+    <div class="calc">
+      <h1>Calculadora de <strong>Gorjetas</strong></h1>
+      <div class="valores-forms">
+        <label for="input-valor">Qual o valor da conta?</label>
+        <input v-model="valor" id="input-valor" type="number" />
+      </div>
+      <div class="valores-forms">
+        <label for="select-servico">Como foi o serviço?</label>
+        <select
+          v-model="qualidade_selecionada"
+          name="select-qualidade"
+          id="select-servico"
+        >
+          <option
+            v-for="qualidade of qualidades"
+            :key="qualidade.qualidade"
+            for="select-servico"
+          >
+            {{ qualidade.servico }}
+          </option>
+        </select>
+      </div>
+      <div class="valores-forms">
+        <label for="input-pessoas"
+          >Quantas pessoas estão pagando a conta?</label
+        >
+        <input v-model="pessoa" id="input-pessoas" type="number" />
+      </div>
+      <div class="btn-div">
+        <button class="button-3" @click="gerar()" role="button">gerar</button>
+      </div>
+    </div>
+    <div class="resultado">
+      <h2>Valor da conta:</h2>
+      <span>R$ {{ valor_final }} por pessoa</span>
+    </div>
+  </main>
 </template>
