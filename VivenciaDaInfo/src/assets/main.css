@@ -3,20 +3,21 @@
 .calc{
   border: 3px solid #8a88ff;
   padding: 30px;
-}
-.container {
   max-width: 830px;
-  margin: auto;
+  display: block;
 }
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 main {
   display: flex;
-  justify-content: center;
-  margin-top: 80px;
+  flex-direction: column;
 }
 .valores-forms {
   display: grid;
