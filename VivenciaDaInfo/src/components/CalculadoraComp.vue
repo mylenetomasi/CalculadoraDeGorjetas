@@ -45,7 +45,7 @@ export default {
             v-for="qualidade of qualidades"
             :key="qualidade.qualidade"
             for="select-servico"
-            v-bind:value="qualidade.qualidade"
+            :value="qualidade.qualidade"
           >
             {{ qualidade.servico }}
           </option>
